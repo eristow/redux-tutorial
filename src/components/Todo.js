@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Todo = ({ onClick, completed, text }) => (
-    <div className='row mt-4'>
+    <div className='row mt-3'>
         <div className='col'>
             <li
                 className='float-left'
@@ -15,7 +15,7 @@ const Todo = ({ onClick, completed, text }) => (
         </div>
         <div className='col'>
             <button
-                clasName='float-right'
+                className='float-right'
                 onClick={onClick}
             >
                 {!completed
