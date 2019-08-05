@@ -3,13 +3,10 @@ import 'regenerator-runtime/runtime'
 import _ from 'lodash'
 import React from 'react'
 import { render } from 'react-dom'
-import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import AppContainer from './containers/AppContainer'
 import AsyncContainer from './containers/AsyncContainer'
-import configureStore from './configureStore'
-import { fetchPostsIfNeeded } from './actions';
 
 const RenderApp = () =>
     (

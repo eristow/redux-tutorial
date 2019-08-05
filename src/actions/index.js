@@ -43,29 +43,6 @@ export const requestPosts = subreddit => ({
     subreddit
 })
 
-export const receivePosts = (subreddit, json) => ({
-    type: RECEIVE_POSTS,
-    subreddit,
-    posts: json.data.children.map(child => child.data),
-    receivedAt: Date.now()
-})
-
-export const fetchPosts = (subreddit) => (
-    dispatch => {
-        dispatch(requestPosts(subreddit))
-
-        //TODO change this to use async/await
-        return fetch(`https://www.reddit.com/r/${subreddit}.json`)
-        .then(
-            response => response.json(),
-            error => console.log('An error occurred.', error)
-        )
-        .then(
-            json => dispatch(receivePosts(subreddit, json))
-        )
-    }
-)
-
 export const shouldFetchPosts = (state, subreddit) => {
     const posts = state.postsBySubreddit[subreddit]
     if(!posts) {
@@ -82,7 +59,7 @@ export const shouldFetchPosts = (state, subreddit) => {
 export const fetchPostsIfNeeded = subreddit => (
     (dispatch, getState) => {
         if(shouldFetchPosts(getState(), subreddit)) {
-            return dispatch(fetchPosts(subreddit))
+            return dispatch({ type: 'GET_POSTS', payload: { subreddit } })
         }
         else {
             return Promise.resolve()
