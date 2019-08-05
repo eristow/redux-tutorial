@@ -1,10 +1,28 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put, select, takeEvery } from 'redux-saga/effects'
 
 import { fetchPostsApi } from '../api'
 
-//TODO when does this get called in the flow of redux/saga?
+const shouldFetchPosts = (state, subreddit) => {
+    const posts = state.postsBySubreddit[subreddit]
+    if(!posts) {
+        return true
+    }
+    else if(posts.isFetching) {
+        return false
+    }
+    else {
+        return posts.didInvalidate
+    }
+}
+
 function* fetchPosts(action) {
     const subreddit = action.payload.subreddit
+
+    const state = yield select();
+
+    if(!shouldFetchPosts(state, subreddit)) {
+        return Promise.resolve()
+    }
 
     const json = yield call(fetchPostsApi, subreddit)
 

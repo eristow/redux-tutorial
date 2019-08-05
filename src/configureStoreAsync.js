@@ -1,5 +1,4 @@
 import { applyMiddleware, createStore } from 'redux'
-import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
 
@@ -11,8 +10,7 @@ import rootSaga from './sagas'
 export default function configureStore(preloadedState) {
     const sagaMiddleware = createSagaMiddleware()
 
-    // TODO remove thunkMiddleware
-    const middlewares = [loggerMiddleware, thunkMiddleware, sagaMiddleware]
+    const middlewares = [loggerMiddleware, sagaMiddleware]
     const middlewareEnhancer = applyMiddleware(...middlewares)
 
     const enhancers = [middlewareEnhancer, monitorReducerEnhancer]
