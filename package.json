@@ -12,7 +12,7 @@
     "run-postbuild": "node tools/publicServer.js",
     "build": "webpack --mode production --config webpack.config.prod.js",
     "build-dev": "webpack --mode development --config webpack.config.dev.js",
-    "start": "node tools/publicServer.js",
+    "start": "babel-node tools/publicServer.js",
     "start-dev": "webpack-dev-server --mode development --config webpack.config.dev.js",
     "dev": "nodemon src/index.js --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1"
