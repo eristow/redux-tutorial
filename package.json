@@ -5,14 +5,14 @@
   "private": true,
   "scripts": {
     "clean-public": "npm run remove-public && mkdir public",
-    "remove-public": "node_modules/.bin/rimraf ./public",
+    "remove-public": "rimraf ./public",
     "build:html": "babel-node tools/buildHtml.js",
     "prebuild": "npm-run-all clean-public build:html",
-    "build": "babel-node tools/build.js",
+    "build-old": "babel-node tools/build.js",
     "run-postbuild": "node tools/publicServer.js",
-    "build-old": "webpack --mode production --config webpack.config.prod.js",
+    "build": "webpack --mode production --config webpack.config.prod.js",
     "build-dev": "webpack --mode development --config webpack.config.dev.js",
-    "start": "webpack -p --config webpack.config.prod.js && node tools/publicServer.js",
+    "start": "node tools/publicServer.js",
     "start-dev": "webpack-dev-server --mode development --config webpack.config.dev.js",
     "dev": "nodemon src/index.js --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1"
