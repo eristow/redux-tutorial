@@ -1,1 +1,1 @@
-web: npm run start-postbuild
+web: npm run run-postbuild
