@@ -9,10 +9,10 @@
     "build:html": "babel-node tools/buildHtml.js",
     "prebuild": "npm-run-all clean-public build:html",
     "build": "babel-node tools/build.js",
-    "run-postbuild": "babel-node tools/publicServer.js",
+    "run-postbuild": "node tools/publicServer.js",
     "build-old": "webpack --mode production --config webpack.config.prod.js",
     "build-dev": "webpack --mode development --config webpack.config.dev.js",
-    "start": "--config webpack.config.prod.js",
+    "start": "webpack -p --config webpack.config.prod.js && node tools/publicServer.js",
     "start-dev": "webpack-dev-server --mode development --config webpack.config.dev.js",
     "dev": "nodemon src/index.js --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1"
