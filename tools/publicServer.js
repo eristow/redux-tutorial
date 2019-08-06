@@ -1,8 +1,8 @@
-import express from 'express'
-import path from 'path'
-import open from 'open'
-import compression from 'compression'
-import favicon from 'serve-favicon'
+const express = require('express')
+const path = require('path')
+const open = require('open')
+const compression = require('compression')
+const favicon = require('serve-favicon')
 
 /*eslint-disable no-console */
 
