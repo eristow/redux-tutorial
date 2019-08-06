@@ -1,11 +1,19 @@
 from flask import Flask, request, jsonify
 import requests
 import praw
+import os
+
+is_prod = os.environ.get('IS_HEROKU', None)
 
 app = Flask(__name__)
-client_id = os.environ['client_id']
-client_secret = os.environ['client_secret']
-reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent='React-Flask_made_by_/u/nave321')
+
+reddit = None
+if is_prod:
+    client_id = os.environ['client_id']
+    client_secret = os.environ['client_secret']
+    reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent='React-Flask_made_by_/u/nave321')
+else:
+    reddit = praw.Reddit('DEFAULT')
 
 @app.route('/')
 def index():
