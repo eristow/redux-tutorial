@@ -5,7 +5,7 @@ export const fetchPostsApi = async subreddit => {
     // const json1 = await response1.json()
     // console.log('api test json', json1)
 
-    const response = await fetch(`http://127.0.0.1:5000/api/v1/subreddit`, {
+    const response = await fetch(`${process.env.API_HOST}/api/v1/subreddit`, {
         method: 'post',
         body: subreddit
     })

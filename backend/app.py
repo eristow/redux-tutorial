@@ -3,17 +3,17 @@ import requests
 import praw
 import os
 
-is_prod = os.environ.get('IS_HEROKU', None)
+app_settings = os.environ['APP_SETTINGS']
 
 app = Flask(__name__)
+app.config.from_object(app_settings)
 
-reddit = None
-if is_prod:
+if app_settings == 'config.DevelopmentConfig':
+    reddit = praw.Reddit('DEFAULT')
+else:
     client_id = os.environ['client_id']
     client_secret = os.environ['client_secret']
     reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent='React-Flask_made_by_/u/nave321')
-else:
-    reddit = praw.Reddit('DEFAULT')
 
 @app.route('/')
 def index():

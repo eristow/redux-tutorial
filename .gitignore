@@ -2,5 +2,6 @@ node_modules
 dist/
 praw.ini
 
+__pycache__/
 backend/test/
 backend/__pycache__/

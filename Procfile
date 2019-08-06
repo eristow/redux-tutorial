@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath backend app:app
+web: babel-node tools/publicServer.js
