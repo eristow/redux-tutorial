@@ -3,7 +3,9 @@ import requests
 import praw
 
 app = Flask(__name__)
-reddit = praw.Reddit('DEFAULT')
+client_id = os.environ['client_id']
+client_secret = os.environ['client_secret']
+reddit = praw.Reddit(client_id=client_id, client_secret=client_secret, user_agent='React-Flask_made_by_/u/nave321')
 
 @app.route('/')
 def index():
