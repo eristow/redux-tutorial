@@ -1,1 +1,1 @@
-web: babel-node tools/publicServer.js
+web: npm run start-postbuild
