@@ -3,7 +3,7 @@ import requests
 import praw
 
 app = Flask(__name__)
-reddit = praw.Reddit('DEFAULT', user_agent='React-Flask by /u/nave321')
+reddit = praw.Reddit('DEFAULT')
 
 @app.route('/')
 def index():
@@ -13,24 +13,14 @@ def index():
 def get_subreddit():
     if request.method == 'GET':
         return "It's a GET!"
-    req_data = request.data.decode("utf-8")
-    print('req_data', req_data)
-
-    # subreddit_data = requests.get(f'https://www.reddit.com/r/{req_data}.json').content
-
-    subreddit_data = []
-    for submission in reddit.subreddit(req_data).hot(limit=20):
-        subreddit_data.push(submission)
-
-    print('subreddit_data', subreddit_data)
+    req_subreddit = request.data.decode('utf-8')
 
     subreddit = {
         'data': {
-            'children': subreddit_data
+            'children': []
         }
     }
-
-    print('subreddit', subreddit)
-    print('jsonify subreddit', jsonify(subreddit))
+    for submission in reddit.subreddit(req_subreddit).hot(limit=20):
+        subreddit['data']['children'].append({ 'data': { 'title': submission.title } })
 
     return jsonify(subreddit)

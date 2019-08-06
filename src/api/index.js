@@ -7,14 +7,10 @@ export const fetchPostsApi = async subreddit => {
 
     const response = await fetch(`http://127.0.0.1:5000/api/v1/subreddit`, {
         method: 'post',
-        body: JSON.stringify(subreddit)
+        body: subreddit
     })
 
-    console.log('api response', response)
-
     const json = await response.json()
-
-    console.log('api json', json)
 
     return json
 }
