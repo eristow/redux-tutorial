@@ -8,5 +8,9 @@
 5. You'll need to supply a client id and secret for PRAW via a praw.ini in the root directory.
 
 ## How To Run
-1. In one console, run `npm run start-dev` for dev or `npm run start` for prod. (Need to add prod start script...).
+1. In one console, run `npm run start-dev` for dev or `npm run start` for prod.
 2. In another console, run the venv `activate` script, and then run `python -m flask run`.
+
+## TODO
+* Need to add prod start script for npm.
+* Lots of general fix-ups and adding new features. This is still very much WIP.
